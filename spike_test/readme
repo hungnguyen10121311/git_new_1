@@ -1,0 +1,9 @@
+Tổng hợp (End-to-End Test)	
+Đánh giá khả năng LB xử lý các tải tăng đột ngột	"- Tăng tải đột ngột từ 1,000 RPS lên 10,000 RPS trong 1 phút với api truy cập trang chủ marketplace 
+api https://cmc-marketplace.emso.vn/api/v1/suggestions/product?limit=10&offset=10
+ - Đo lường thời gian ổn định của hệ thống"
+
+Check kết quả
+"- RPS tối đa 
+ - Thời gian ổn định hệ thống 
+ - Tỷ lệ lỗi (%)"

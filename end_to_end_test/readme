@@ -1,0 +1,8 @@
+Tổng hợp (End-to-End Test)	
+Mô phỏng hành vi người dùng thực tế và tải hỗn hợp	"- 70% user đọc dữ liệu post tại newfeed, 20% tương tác (like, comment), 10% tạo nội dung (đăng bài) 
+ - Tăng tải dần 0 -> 100,000 user"
+
+Check kết quả
+ - RPS (từng hành vi user) 
+ - Thời gian đáp ứng của hệ thống 
+ - CPU, RAM, Disk I/O của LB"
