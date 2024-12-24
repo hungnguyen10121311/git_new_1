@@ -6,8 +6,15 @@ const videoFilePath = 'C:/Users/Admin/Desktop/k6_project/353775516_9228474421177
 const videoFile = open(videoFilePath, 'b'); // 'b' để mở file nhị phân (binary)
 
 export const options = {
-  vus: 1, // Số lượng người dùng ảo
-  duration: '1s', // Thời gian thực hiện kiểm thử
+  stages: [
+    { duration: '5m', target: 1000 }, // Tăng tải lên 1,000 video trong 5 phút
+    { duration: '5m', target: 1000 }, // Giữ ổn định ở mức 1,000 video trong 5 phút
+    { duration: '5m', target: 5000 }, // Tăng tải lên 5,000 video trong 5 phút
+    { duration: '5m', target: 5000 }, // Giữ ổn định ở mức 5,000 video trong 5 phút
+    { duration: '5m', target: 10000 }, // Tăng tải lên 10,000 video trong 5 phút
+    { duration: '10m', target: 10000 }, // Giữ ổn định ở mức 10,000 video trong 10 phút
+    { duration: '5m', target: 0 }, // Giảm về 0 trong 5 phút
+  ],
 };
 
 export default function () {
@@ -55,7 +62,7 @@ export default function () {
   console.log(`✅ Media ID nhận được: ${media_id}`);
 
   // 2️⃣ **API đăng bài viết**
-  const postUrl = 'https://cmc-sn.emso.vn/api/v1/statuses';
+  const postUrl = 'https://lab-sn.emso.vn/api/v1/statuses';
   const postHeaders = {
     'Authorization': 'Bearer RywajiSwzcSA2cgQElYjOktuvBt2duWDPQqBomK5cMo',
     'Accept': 'application/json, text/plain, */*',

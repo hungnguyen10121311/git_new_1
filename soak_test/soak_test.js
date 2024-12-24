@@ -20,24 +20,30 @@ const tokens = [
   'Bearer nfJgN2jv9ITtFEqYJm8ONe1PkoFi9as_qR6a95Yh-3M',
 ];
 
+// Hàm chung để lấy headers với token ngẫu nhiên
+function getHeaders() {
+  return {
+    'Authorization': tokens[Math.floor(Math.random() * tokens.length)],
+    'Accept': 'application/json, text/plain, */*',
+    'Content-Type': 'application/json',
+  };
+}
+
+// Hàm chung gửi GET request
+function getRequest(url) {
+  return http.get(url, { headers: getHeaders() });
+}
+
 export default function () {
-  const randomToken = tokens[Math.floor(Math.random() * tokens.length)];
-
   // Scenario 1: Get Moment Dành cho bạn
-  let momentRes = http.get('https://cmc-sn.emso.vn/api/v1/suggestions/moment?limit=3', {
-    headers: { 'Authorization': randomToken }
-  });
-
+  let momentRes = getRequest('https://lab-sn.emso.vn/api/v1/suggestions/moment?limit=3');
   check(momentRes, {
     'moment status is 200': (r) => r.status === 200,
     'response time is less than 2s': (r) => r.timings.duration < 2000,
   });
 
   // Scenario 2: Get Watch Trang chủ
-  let watchRes = http.get('https://cmc-sn.emso.vn/api/v1/suggestions/watch?limit=2', {
-    headers: { 'Authorization': randomToken }
-  });
-
+  let watchRes = getRequest('https://lab-sn.emso.vn/api/v1/suggestions/watch?limit=2');
   check(watchRes, {
     'watch status is 200': (r) => r.status === 200,
     'response time is less than 2s': (r) => r.timings.duration < 2000,

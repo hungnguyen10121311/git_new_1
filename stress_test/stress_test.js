@@ -26,7 +26,7 @@ export default function () {
   const randomToken = tokens[Math.floor(Math.random() * tokens.length)];
 
   // Scenario 1: Truy cập trang cá nhân
-  let profileRes = http.get('https://cmc-sn.emso.vn/api/v1/accounts/${id_user}', {
+  let profileRes = http.get('https://lab-sn.emso.vn/api/v1/accounts/${id_user}', {
     headers: { 'Authorization': randomToken }
   });
 
@@ -36,7 +36,7 @@ export default function () {
   });
 
   // Scenario 2: React post
-  let reactRes = http.post('https://cmc-sn.emso.vn/api/v1/statuses/${id_post}/favourite', null, {
+  let reactRes = http.post('https://lab-sn.emso.vn/api/v1/statuses/${id_post}/favourite', null, {
     headers: { 'Authorization': randomToken }
   });
 
@@ -46,7 +46,7 @@ export default function () {
   });
 
   // Scenario 3: Comment post
-  let commentRes = http.post('https://cmc-sn.emso.vn/api/v1/statuses', {
+  let commentRes = http.post('https://lab-sn.emso.vn/api/v1/statuses', {
     comment: 'This is a test comment',
   }, {
     headers: { 'Authorization': randomToken }

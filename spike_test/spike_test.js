@@ -4,9 +4,9 @@ import { check, sleep } from 'k6';
 
 export let options = {
   stages: [
-    { duration: '1m', target: 100 }, // Tăng tải lên 1000 RPS trong 1 phút
-    { duration: '1m', target: 1000 }, // Tăng tải đột ngột lên 10,000 RPS trong 1 phút
-    { duration: '3m', target: 1000 }, // Giữ tải ở 10,000 RPS trong 3 phút
+    { duration: '1m', target: 1000 }, // Tăng tải lên 1000 RPS trong 1 phút
+    { duration: '1m', target: 10000 }, // Tăng tải đột ngột lên 10,000 RPS trong 1 phút
+    { duration: '3m', target: 10000 }, // Giữ tải ở 10,000 RPS trong 3 phút
     { duration: '1m', target: 0 }, // Giảm tải về 0 trong 1 phút
   ],
   thresholds: {
@@ -15,7 +15,7 @@ export let options = {
   },
 };
 
-const BASE_URL = 'https://cmc-marketplace.emso.vn/api/v1/suggestions/product?limit=10&offset=10';
+const BASE_URL = 'https://lab-marketplace.emso.vn/api/v1/suggestions/product?limit=10&offset=10';
 
 // Danh sách các token để luân phiên sử dụng
 const TOKENS = [
