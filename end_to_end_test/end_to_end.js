@@ -5,9 +5,9 @@ import { config } from 'file:///C:/Users/Admin/Desktop/k6_project/config.js'; //
 // Các tham số thiết lập
 export let options = {
     stages: [
-        { duration: '1s', target: 1 }, // Tăng tải từ 0 lên 100,000 users trong 5 phút
-        // { duration: '10m', target: 100000 }, // Giữ tải ở 100,000 users trong 10 phút
-        // { duration: '5m', target: 0 }, // Giảm tải về 0 trong 5 phút
+        { duration: '5m', target: 100000 }, // Tăng tải từ 0 lên 100,000 users trong 5 phút
+        { duration: '10m', target: 100000 }, // Giữ tải ở 100,000 users trong 10 phút
+        { duration: '5m', target: 0 }, // Giảm tải về 0 trong 5 phút
     ],
     thresholds: {
         'http_req_duration': ['p(95)<1000'], // 95% các request phải có thời gian đáp ứng dưới 1 giây

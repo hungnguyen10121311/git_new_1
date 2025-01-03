@@ -7,13 +7,13 @@ const videoFile = open(videoFilePath, 'b'); // 'b' để mở file nhị phân (
 
 export const options = {
   stages: [
-    { duration: '1s', target: 1 }, // Tăng tải lên 1,000 video trong 5 phút
-    // { duration: '5m', target: 1000 }, // Giữ ổn định ở mức 1,000 video trong 5 phút
-    // { duration: '5m', target: 5000 }, // Tăng tải lên 5,000 video trong 5 phút
-    // { duration: '5m', target: 5000 }, // Giữ ổn định ở mức 5,000 video trong 5 phút
-    // { duration: '5m', target: 10000 }, // Tăng tải lên 10,000 video trong 5 phút
-    // { duration: '10m', target: 10000 }, // Giữ ổn định ở mức 10,000 video trong 10 phút
-    // { duration: '5m', target: 0 }, // Giảm về 0 trong 5 phút
+    { duration: '5m', target: 1000 }, // Tăng tải lên 1,000 video trong 5 phút
+    { duration: '5m', target: 1000 }, // Giữ ổn định ở mức 1,000 video trong 5 phút
+    { duration: '5m', target: 5000 }, // Tăng tải lên 5,000 video trong 5 phút
+    { duration: '5m', target: 5000 }, // Giữ ổn định ở mức 5,000 video trong 5 phút
+    { duration: '5m', target: 10000 }, // Tăng tải lên 10,000 video trong 5 phút
+    { duration: '10m', target: 10000 }, // Giữ ổn định ở mức 10,000 video trong 10 phút
+    { duration: '5m', target: 0 }, // Giảm về 0 trong 5 phút
   ],
 };
 

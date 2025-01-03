@@ -4,10 +4,10 @@ import { config } from 'file:///C:/Users/Admin/Desktop/k6_project/config.js'; //
 
 export let options = {
   stages: [
-    { duration: '1s', target: 1 }, // Tăng tải lên 1000 RPS trong 1 phút
-    // { duration: '1m', target: 10000 }, // Tăng tải đột ngột lên 10,000 RPS trong 1 phút
-    // { duration: '3m', target: 10000 }, // Giữ tải ở 10,000 RPS trong 3 phút
-    // { duration: '1m', target: 0 }, // Giảm tải về 0 trong 1 phút
+    { duration: '1m', target: 1000 }, // Tăng tải lên 1000 RPS trong 1 phút
+    { duration: '1m', target: 10000 }, // Tăng tải đột ngột lên 10,000 RPS trong 1 phút
+    { duration: '3m', target: 10000 }, // Giữ tải ở 10,000 RPS trong 3 phút
+    { duration: '1m', target: 0 }, // Giảm tải về 0 trong 1 phút
   ],
   thresholds: {
     'http_req_duration': ['p(95)<1000'], // 95% các request phải có thời gian phản hồi dưới 1 giây
