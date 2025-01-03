@@ -6,15 +6,15 @@ import { config } from 'file:///C:/Users/Admin/Desktop/k6_project/config.js'; //
 
 export let options = {
   stages: [
-    { duration: '1s', target: 1 },  // Tăng lên 1 VUs trong 1 giây (chỉnh sửa cho nhẹ nhàng trong giai đoạn thử nghiệm)
-    // { duration: '2m', target: 2000 },  // Giữ 2000 VUs trong 2 phút
-    // { duration: '5m', target: 5000 },  // Tăng lên 5000 VUs trong 5 phút
-    // { duration: '5m', target: 5000 },  // Giữ 5000 VUs trong 5 phút
-    // { duration: '5m', target: 10000 }, // Tăng lên 10000 VUs trong 5 phút
-    // { duration: '5m', target: 10000 }, // Giữ 10000 VUs trong 5 phút
-    // { duration: '5m', target: 20000 }, // Tăng lên 20000 VUs trong 5 phút
-    // { duration: '10m', target: 20000 },// Giữ 20000 VUs trong 10 phút
-    // { duration: '2m', target: 0 },     // Giảm xuống 0 VUs trong 2 phút
+    { duration: '1m', target: 1000 },  // Tăng lên 1 VUs trong 1 giây (chỉnh sửa cho nhẹ nhàng trong giai đoạn thử nghiệm)
+    { duration: '2m', target: 2000 },  // Giữ 2000 VUs trong 2 phút
+    { duration: '5m', target: 5000 },  // Tăng lên 5000 VUs trong 5 phút
+    { duration: '5m', target: 5000 },  // Giữ 5000 VUs trong 5 phút
+    { duration: '5m', target: 10000 }, // Tăng lên 10000 VUs trong 5 phút
+    { duration: '5m', target: 10000 }, // Giữ 10000 VUs trong 5 phút
+    { duration: '5m', target: 20000 }, // Tăng lên 20000 VUs trong 5 phút
+    { duration: '10m', target: 20000 },// Giữ 20000 VUs trong 10 phút
+    { duration: '2m', target: 0 },     // Giảm xuống 0 VUs trong 2 phút
   ],
 };
 
