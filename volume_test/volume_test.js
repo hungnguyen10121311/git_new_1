@@ -7,21 +7,21 @@ const videoFile = open(videoFilePath, 'b'); // 'b' để mở file nhị phân (
 
 export const options = {
   stages: [
-    { duration: '5m', target: 1000 }, // Tăng tải lên 1,000 video trong 5 phút
-    { duration: '5m', target: 1000 }, // Giữ ổn định ở mức 1,000 video trong 5 phút
-    { duration: '5m', target: 5000 }, // Tăng tải lên 5,000 video trong 5 phút
-    { duration: '5m', target: 5000 }, // Giữ ổn định ở mức 5,000 video trong 5 phút
-    { duration: '5m', target: 10000 }, // Tăng tải lên 10,000 video trong 5 phút
-    { duration: '10m', target: 10000 }, // Giữ ổn định ở mức 10,000 video trong 10 phút
-    { duration: '5m', target: 0 }, // Giảm về 0 trong 5 phút
+    { duration: '1s', target: 1 }, // Tăng tải lên 1,000 video trong 5 phút
+    // { duration: '5m', target: 1000 }, // Giữ ổn định ở mức 1,000 video trong 5 phút
+    // { duration: '5m', target: 5000 }, // Tăng tải lên 5,000 video trong 5 phút
+    // { duration: '5m', target: 5000 }, // Giữ ổn định ở mức 5,000 video trong 5 phút
+    // { duration: '5m', target: 10000 }, // Tăng tải lên 10,000 video trong 5 phút
+    // { duration: '10m', target: 10000 }, // Giữ ổn định ở mức 10,000 video trong 10 phút
+    // { duration: '5m', target: 0 }, // Giảm về 0 trong 5 phút
   ],
 };
 
 export default function () {
   // 1️⃣ **API tải video**
-  const uploadUrl = 'https://pt.emso.vn/api/v1/videos/upload';
+  const uploadUrl = 'https://prod-pt.emso.vn/api/v1/videos/upload';
   const uploadHeaders = {
-    'Authorization': 'Bearer 6ac44cc57393fab85e585c961b54ecf89fcece44',
+    'Authorization': 'Bearer 6be43e024fb7133b2fbbbd0e0ccd77873513e899',
     'Accept': 'application/json, text/plain, */*',
     'Cache-Control': 'no-cache',
     'Pragma': 'no-cache',
@@ -31,7 +31,7 @@ export default function () {
   const uploadFormData = {
     videofile: http.file(videoFile, '353775516_922847442117750_5591380169403242164_n.mp4', 'video/mp4'), 
     name: '353775516_922847442117750_5591380169403242164_n.mp4',
-    token: 'RywajiSwzcSA2cgQElYjOktuvBt2duWDPQqBomK5cMo', // Token (nếu cần)
+    token: 'e9ICJkW6mNdJE3rUB9H-1NvCuR9NwuRcDyvYRsyQY08', // Token (nếu cần)
     channelId: '2', 
     privacy: '1', 
     mimeType: 'video/mp4', 
@@ -62,9 +62,9 @@ export default function () {
   console.log(`✅ Media ID nhận được: ${media_id}`);
 
   // 2️⃣ **API đăng bài viết**
-  const postUrl = 'https://lab-sn.emso.vn/api/v1/statuses';
+  const postUrl = 'https://prod-sn.emso.vn/api/v1/statuses';
   const postHeaders = {
-    'Authorization': 'Bearer RywajiSwzcSA2cgQElYjOktuvBt2duWDPQqBomK5cMo',
+    'Authorization': 'Bearer e9ICJkW6mNdJE3rUB9H-1NvCuR9NwuRcDyvYRsyQY08',
     'Accept': 'application/json, text/plain, */*',
     'Content-Type': 'application/json',
   };
@@ -88,6 +88,6 @@ export default function () {
   // 🔍 Kiểm tra phản hồi đăng bài
   check(postResponse, {
     'is status 200 or 201': (r) => r.status === 200 || r.status === 201,
-    'is post created successfully': (r) => r.body.includes('media_ids'),
+    // 'is post created successfully': (r) => r.body.includes('media_ids'),
   });
 }

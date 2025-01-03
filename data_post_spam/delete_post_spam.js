@@ -6,7 +6,7 @@ export let options = {
   duration: '100s', // Thời gian chạy
 };
 
-const BASE_URL = 'https://lab-sn.emso.vn/api/v1';
+const BASE_URL = 'https://prod-sn.emso.vn/api/v1';
 const USERS = [
   { token: 'Bearer RywajiSwzcSA2cgQElYjOktuvBt2duWDPQqBomK5cMo', userId: '109307596693229606' },
   { token: 'Bearer hgKONHVF209Sx67tz4EfZwnLNVyXXh_u-sVrC3veKQ8', userId: '108813322749055123' },
@@ -18,8 +18,8 @@ const HEADERS = {
   'accept': 'application/json, text/plain, */*',
   'accept-language': 'vi,vi-VN;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5,de;q=0.4,ja;q=0.3',
   'cache-control': 'no-cache',
-  'origin': 'https://lab-fe.emso.vn',
-  'referer': 'https://lab-fe.emso.vn/',
+  'origin': 'https://prod-fe.emso.vn',
+  'referer': 'https://prod-fe.emso.vn/',
   'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
   'sec-ch-ua-mobile': '?0',
   'sec-ch-ua-platform': '"Windows"',
