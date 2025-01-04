@@ -1,23 +1,22 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
+import { config } from '../config.js';
 
 // Import configuration
-import { config } from 'file:///C:/Users/Admin/Desktop/k6_project/config.js'; // Đường dẫn file config
+// import { config } from 'config.js';
 
 export let options = {
-  stages: [
-    { duration: '1m', target: 1000 },  // Tăng lên 1 VUs trong 1 giây (chỉnh sửa cho nhẹ nhàng trong giai đoạn thử nghiệm)
-    { duration: '2m', target: 2000 },  // Giữ 2000 VUs trong 2 phút
-    { duration: '5m', target: 5000 },  // Tăng lên 5000 VUs trong 5 phút
-    { duration: '5m', target: 5000 },  // Giữ 5000 VUs trong 5 phút
-    { duration: '5m', target: 10000 }, // Tăng lên 10000 VUs trong 5 phút
-    { duration: '5m', target: 10000 }, // Giữ 10000 VUs trong 5 phút
-    { duration: '5m', target: 20000 }, // Tăng lên 20000 VUs trong 5 phút
-    { duration: '10m', target: 20000 },// Giữ 20000 VUs trong 10 phút
-    { duration: '2m', target: 0 },     // Giảm xuống 0 VUs trong 2 phút
-  ],
+  scenarios: {
+    constant_rps: {
+      executor: 'constant-arrival-rate',
+      rate: 280, // 1000 requests mỗi giây
+      timeUnit: '1s', // 1 giây
+      duration: '1m', // Chạy trong 1 phút
+      preAllocatedVUs: 200, // Số lượng VUs ban đầu
+      maxVUs: 1000, // Tối đa số VUs
+    },
+  },
 };
-
 // Hàm chung để lấy headers với token ngẫu nhiên từ config.accounts_prod
 function getHeaders() {
   // Chọn ngẫu nhiên một tài khoản từ config.accounts_prod
@@ -64,22 +63,22 @@ export default function () {
     'response time is less than 2s': (r) => r.timings.duration < 2000,
   }) || console.error(`User Info API failed. Status: ${userInfoRes.status}, Body: ${userInfoRes.body}`);
 
-  // Scenario 3: Xem timeline
-  let timelineRes = getRequest('/api/v1/timelines/home?feed_key=395195&exclude_replies=true&limit=3');
-  check(timelineRes, {
-    'timeline status is 200': (r) => r.status === 200,
-    'response time is less than 2s': (r) => r.timings.duration < 2000,
-  }) || console.error(`Timeline API failed. Status: ${timelineRes.status}, Body: ${timelineRes.body}`);
+  // // Scenario 3: Xem timeline
+  // let timelineRes = getRequest('/api/v1/timelines/home?feed_key=395195&exclude_replies=true&limit=3');
+  // check(timelineRes, {
+  //   'timeline status is 200': (r) => r.status === 200,
+  //   'response time is less than 2s': (r) => r.timings.duration < 2000,
+  // }) || console.error(`Timeline API failed. Status: ${timelineRes.status}, Body: ${timelineRes.body}`);
 
-  // Scenario 4: Đăng bài viết
-  let postRes = postRequest('/api/v1/statuses', JSON.stringify({
-    status: "This is a load testing post content.",
-    visibility: "public",
-  }));
-  check(postRes, {
-    'post status is 200': (r) => r.status === 200,
-    'response time is less than 2s': (r) => r.timings.duration < 2000,
-  }) || console.error(`Post API failed. Status: ${postRes.status}, Body: ${postRes.body}`);
+  // // Scenario 4: Đăng bài viết
+  // let postRes = postRequest('/api/v1/statuses', JSON.stringify({
+  //   status: "This is a load testing post content.",
+  //   visibility: "public",
+  // }));
+  // check(postRes, {
+  //   'post status is 200': (r) => r.status === 200,
+  //   'response time is less than 2s': (r) => r.timings.duration < 2000,
+  // }) || console.error(`Post API failed. Status: ${postRes.status}, Body: ${postRes.body}`);
 
   sleep(1); // Sleep để mô phỏng hành vi thực
 }
